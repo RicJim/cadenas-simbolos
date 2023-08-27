@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Resultados{% endblock title %}
+
+{% block content %}
+
+<div class="container text-center my-5">
+    <h1 class="display-4 text-primary">Resultados</h1>
+
+    <div class="row justify-content-center my-4">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">Cadena A</label>
+                <input type="text" class="form-control" value="{{ cadena1 }}" disabled>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">Cadena B</label>
+                <input type="text" class="form-control" value="{{ cadena2 }}" disabled>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center my-4">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="resultado-concatenacion" class="form-label">Concatenación</label>
+                <input type="text" class="form-control" id="resultado-concatenacion" name="resultado-concatenacion" value="{{ concatenacion }}" disabled>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center my-4">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="resultado-cadena-a" class="form-label">Resultado de Cadena A</label>
+                <div class="operacion-exponente">Operación con exponente</div>
+                <input type="text" class="form-control" id="resultado-cadena-a" name="resultado-cadena-a" value="{{ cadena_a }}" disabled>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="resultado-cadena-b" class="form-label">Resultado de Cadena B</label>
+                <div class="operacion-exponente">Operación con exponente</div>
+                <input type="text" class="form-control" id="resultado-cadena-b" name="resultado-cadena-b" value="{{ cadena_b }}" disabled>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

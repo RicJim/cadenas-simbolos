@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Laboratorio N1{% endblock title %}
+
+{% block content %}
+
+<div class="container text-center my-5">
+    <h1 class="display-4 text-primary">Cadenas y Símbolos</h1>
+    <h5 class="text-secondary">Victoria Ludeña y Ricardo Jiménez</h5>
+    
+    <form action="{{ url_for('calculate_results') }}" method="post" class="mt-5 p-4 border rounded bg-light">
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="alfabeto" class="form-label">Alfabeto</label>
+                    <input type="text" class="form-control" id="alfabeto" name="alfabeto">
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="cadena1" class="form-label">Cadena A</label>
+                    <input type="text" class="form-control" id="cadena1" name="cadena1" disabled>
+                    <input class="form-control longitud" type="text" id="longitud1" name="longitud1" disabled>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="cadena2" class="form-label">Cadena B</label>
+                    <input type="text" class="form-control" id="cadena2" name="cadena2" disabled>
+                    <input class="form-control longitud" type="text" id="longitud2" name="longitud2" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="exponentea" class="form-label">Exponente cadena A</label>
+                    <input type="text" class="form-control" id="exponentea" name="exponentea" oninput="this.value = this.value.replace(/[^1-9]/g, '');">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="exponenteb" class="form-label">Exponente cadena B</label>
+                    <input type="text" class="form-control" id="exponenteb" name="exponenteb" oninput="this.value = this.value.replace(/[^1-9]/g, '');">
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label>Operación de concatenación</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radio-option" value="1" checked>
+                        <label class="form-check-label">A*B</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radio-option" value="2">
+                        <label class="form-check-label">B*A</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <button type="submit" class="btn btn-primary btn-lg" id="btn-res" disabled>Mostrar Resultados</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock content %}
