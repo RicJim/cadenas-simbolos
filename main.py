@@ -7,8 +7,8 @@ app = Flask(__name__)
 def index():    
     return render_template('index.html')
 
-@app.route('/calculate_results', methods=['POST'])
-def calculate_results():
+@app.route('/mostrar_resultados', methods=['POST'])
+def mostrar_resultados():
     exponenteA = int(request.form['exponentea'])
     exponenteB = int(request.form['exponenteb'])
     cadenaA = request.form['cadena1']
