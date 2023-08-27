@@ -12,9 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
         caracteres = new Set(input);
         alfabetoInput.value = Array.from(caracteres).join('');
 
-        filterInput(cad1Input, caracteres);
-        filterInput(cad2Input, caracteres);
-
         if (alfabetoInput.value.trim() !== '') {
             cad1Input.removeAttribute('disabled');
             cad2Input.removeAttribute('disabled');
@@ -22,6 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
             cad1Input.setAttribute('disabled', 'disabled');
             cad2Input.setAttribute('disabled', 'disabled');
         }
+
+        filterInput(cad1Input, caracteres);
+        filterInput(cad2Input, caracteres);
     });
 
     //Verificar si el caracter se encuentra en el alfabeto
@@ -30,6 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const filteredValue = inputValue.split('').filter(char => caracteres.has(char)).join('');
         input.value = filteredValue;
         
+        updateLength(input, input === cad1Input ? longitud1 : longitud2);
+    };
+
+    function updateLength(input, lengthInput) {
+        const inputValue = input.value;
+        const length = inputValue.length;
+        lengthInput.value = length;
+    }
+
+    function verify() {
         if (inputValue.split('').some(char => !caracteres.has(char))) {
             input.setCustomValidity('Contiene caracteres no válidos para el alfabeto.');
     
@@ -42,23 +52,17 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             input.setCustomValidity('');
         }
-        
-        updateLength(input, input === cad1Input ? longitud1 : longitud2);
-    };
-
-    function updateLength(input, lengthInput) {
-        const inputValue = input.value;
-        const length = inputValue.length;
-        lengthInput.value = length;
     }
 
     cad1Input.addEventListener('input', event => {
         filterInput(event.target, caracteres);
+        verify(event.target, caracteres);
         resultadosButton();
     });
 
     cad2Input.addEventListener('input', event => {
         filterInput(event.target, caracteres);
+        verify(event.target, caracteres);
         resultadosButton();
     });
 
@@ -75,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const data = await response.json();
         window.location.href = data.redirect;
-        limpiarInputs();
     });
 
     //Habilitar o desabilitar boton mostrar resultados
@@ -100,8 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function limpiarInputs() {
         formInputs.forEach(input => input.value = '');
+        resButton.disabled = true;
     }
 
     window.addEventListener('load', limpiarInputs)
-
 });
