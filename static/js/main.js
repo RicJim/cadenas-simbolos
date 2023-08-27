@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputValue = input.value;
         const filteredValue = inputValue.split('').filter(char => caracteres.has(char)).join('');
         input.value = filteredValue;
-        
+
         updateLength(input, input === cad1Input ? longitud1 : longitud2);
     };
 
@@ -39,28 +39,32 @@ document.addEventListener('DOMContentLoaded', () => {
         lengthInput.value = length;
     }
 
-    function verify() {
+    function verify(input, caracteres) {
+        const inputValue = input.value;
+
         if (inputValue.split('').some(char => !caracteres.has(char))) {
             input.setCustomValidity('Contiene caracteres no válidos para el alfabeto.');
-    
+
             Swal.fire({
                 icon: 'warning',
                 title: 'Advertencia',
                 text: 'Carácter no válido, intente con otro...',
                 confirmButtonColor: '#007bff'
-            });            
+            });
         } else {
             input.setCustomValidity('');
         }
     }
 
     cad1Input.addEventListener('input', event => {
+        verify(event.target, caracteres);
         filterInput(event.target, caracteres);
         verify(event.target, caracteres);
         resultadosButton();
     });
 
     cad2Input.addEventListener('input', event => {
+        verify(event.target, caracteres);
         filterInput(event.target, caracteres);
         verify(event.target, caracteres);
         resultadosButton();
